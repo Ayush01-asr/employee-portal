@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Leave Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center mb-4">
+            Apply Leave
+        </h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Leave Type
+                </label>
+
+                <select name="leave_type"
+                        class="form-control">
+
+                    <option>Sick Leave</option>
+                    <option>Casual Leave</option>
+                    <option>Paid Leave</option>
+                    <option>Emergency Leave</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Start Date
+                </label>
+
+                <input type="date"
+                       name="start_date"
+                       class="form-control"
+                       required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    End Date
+                </label>
+
+                <input type="date"
+                       name="end_date"
+                       class="form-control"
+                       required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Reason
+                </label>
+
+                <textarea
+                    name="reason"
+                    class="form-control"
+                    rows="4"
+                    required></textarea>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Apply Leave
+
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h3>
+            Leave History
+        </h3>
+
+        <table class="table table-bordered mt-3">
+
+            <thead class="table-dark">
+
+            <tr>
+
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Status</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for leave in leaves %}
+
+            <tr>
+
+                <td>{{ leave.leave_type }}</td>
+
+                <td>{{ leave.start_date }}</td>
+
+                <td>{{ leave.end_date }}</td>
+
+                <td>
+
+                    {% if leave.status == "Approved" %}
+
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+
+                    {% elif leave.status == "Rejected" %}
+
+                        <span class="badge bg-danger">
+                            Rejected
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-warning">
+                            Pending
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="4"
+                    class="text-center">
+
+                    No leave requests found
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <div class="text-center mt-4">
+
+            <a href="/dashboard/"
+               class="btn btn-secondary">
+
+                Back to Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
