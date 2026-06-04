@@ -253,6 +253,7 @@
     <div class="topbar">
 
         <button
+            id="menuBtn"
             class="btn btn-primary d-md-none"
             onclick="toggleSidebar()">
             ☰
@@ -699,6 +700,8 @@ new Chart(payrollCtx, {
 
 <script>
 
+<script>
+
 function toggleDarkMode() {
 
     document.body.classList.toggle("dark-mode");
@@ -707,12 +710,27 @@ function toggleDarkMode() {
 
 function toggleSidebar() {
 
-    document
-        .querySelector(".sidebar")
-        .classList
-        .toggle("active");
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    const btn =
+        document.getElementById("menuBtn");
+
+    sidebar.classList.toggle("active");
+
+    if (sidebar.classList.contains("active")) {
+
+        btn.innerHTML = "✖";
+
+    } else {
+
+        btn.innerHTML = "☰";
+
+    }
 
 }
+
+</script>
 
 </script>
 
