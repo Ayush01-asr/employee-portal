@@ -205,7 +205,7 @@
 
 <body>
 
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
 
     <h3>Employee Portal</h3>
 
@@ -696,10 +696,6 @@ new Chart(payrollCtx, {
 
 });
 
-</script>
-
-<script>
-
 <script>
 
 function toggleDarkMode() {
@@ -710,11 +706,9 @@ function toggleDarkMode() {
 
 function toggleSidebar() {
 
-    const sidebar =
-        document.querySelector(".sidebar");
+    const sidebar = document.querySelector(".sidebar");
 
-    const btn =
-        document.getElementById("menuBtn");
+    const btn = document.getElementById("menuBtn");
 
     sidebar.classList.toggle("active");
 
@@ -729,8 +723,6 @@ function toggleSidebar() {
     }
 
 }
-
-</script>
 
 </script>
 
