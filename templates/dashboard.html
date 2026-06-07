@@ -255,7 +255,13 @@
         <button
             id="menuBtn"
             class="btn btn-primary d-md-none"
-            onclick="toggleSidebar()">
+            onclick="toggleSidebar()"
+            style="
+                position:fixed;
+                top:15px;
+                left:15px;
+                z-index:10000;
+            ">
             ☰
         </button>
 
@@ -263,15 +269,12 @@
             Welcome {{ request.user.username }}
         </h4>
 
-        <h6 style="color:red;">VERSION 2 TEST</h6>
-
         <button
             class="btn btn-dark btn-sm"
             onclick="toggleDarkMode()">
 
             🌙
 
-        </button>
 
         <div class="profile-box">
 
@@ -712,22 +715,16 @@ function toggleDarkMode() {
 
 function toggleSidebar() {
 
-    const sidebar = document.querySelector(".sidebar");
-
+    const sidebar = document.getElementById("sidebar");
     const btn = document.getElementById("menuBtn");
 
     sidebar.classList.toggle("active");
 
     if (sidebar.classList.contains("active")) {
-
         btn.innerHTML = "✖";
-
     } else {
-
         btn.innerHTML = "☰";
-
     }
-
 }
 
 </script>
